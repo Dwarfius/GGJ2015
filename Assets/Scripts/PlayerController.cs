@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour 
 {
     public Vector2 speed = Vector2.one;
     public GameObject projectilePrefab;
-    public string[] items;
+    public List<string> items;
 
     float spriteHeight;
     bool jumping;
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
     void Use()
     {
         if (item)
-            item.Interact();
+            item.Interact(this);
     }
 
     void OnCollisionEnter2D(Collision2D col)
