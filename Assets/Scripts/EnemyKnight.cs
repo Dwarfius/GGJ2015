@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour 
+public class EnemyKnight : MonoBehaviour 
 {
     public float speed;
 
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(transform.right * dX * facing);
 	}
 
-    void OnColliderEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
             Destroy(col.gameObject);
