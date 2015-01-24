@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        spriteHeight = (collider2D as BoxCollider2D).bounds.size.y / transform.localScale.y;
+        spriteHeight = collider2D.bounds.size.y / transform.localScale.y;
+        Debug.Log(GameData.Instance);
     }
 
     void Update()
