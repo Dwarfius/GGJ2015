@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     bool facing = true;
     Collider2D arm;
 
-    public Texture2D tutorial1;
 
     void Start()
     {
