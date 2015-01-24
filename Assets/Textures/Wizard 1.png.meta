@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2c875466f8a9a7145957c9ebfef8a652
+guid: b1a3b3614a5ca504cb8d0cf1fe5522bd
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dirt_0
-    21300002: dirt_1
-    21300004: dirt_2
+    21300000: Wizard 1_0
+    21300002: Wizard 1_1
+    21300004: Wizard 1_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,33 +46,33 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: dirt_0
+    - name: Wizard 1_0
       rect:
         serializedVersion: 2
-        x: 215
-        y: 308
+        x: 0
+        y: 5
         width: 218
-        height: 202
+        height: 263
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dirt_1
+    - name: Wizard 1_1
       rect:
         serializedVersion: 2
-        x: 73
-        y: 138
-        width: 271
-        height: 157
+        x: 224
+        y: 0
+        width: 151
+        height: 264
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: dirt_2
+    - name: Wizard 1_2
       rect:
         serializedVersion: 2
-        x: 77
-        y: 324
-        width: 85
-        height: 173
+        x: 394
+        y: 17
+        width: 98
+        height: 246
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
