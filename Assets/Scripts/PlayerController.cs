@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position, angle);
         Physics2D.IgnoreCollision(projectile.collider2D, collider2D);
         projectile.GetComponent<Arrow>().SetTargetTag("Enemy");
-        projectile.rigidbody2D.velocity = 5 * projectile.transform.right;
+        projectile.rigidbody2D.velocity = 10 * projectile.transform.right;
     }
 
     Interactible item = null;

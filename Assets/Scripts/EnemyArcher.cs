@@ -13,9 +13,10 @@ public class EnemyArcher : MonoBehaviour
     {
         if (target && shootCd < 0)
         {
+            bool facing = (target.position - transform.position).normalized.x > 0;
             float v = 10;
-            float A = GetFiringAngleSolution(transform.position, target.position, v);
-            Quaternion angle = Quaternion.Euler(0, 0, A * Mathf.Rad2Deg);
+            float A = GetFiringAngleSolution(transform.position, target.position, v) * Mathf.Rad2Deg;
+            Quaternion angle = Quaternion.Euler(0, 0, facing ? A : 180 - A);
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, transform.position, angle);
             Physics2D.IgnoreCollision(arrow.collider2D, collider2D);
             arrow.GetComponent<Arrow>().SetTargetTag("Player");
@@ -45,6 +46,6 @@ public class EnemyArcher : MonoBehaviour
         float g = Physics.gravity.magnitude;
         float a1 = Mathf.Atan((v*v + Mathf.Sqrt(Mathf.Pow(v, 4) - g*(g*x*x + 2*y*v*v)))/(g*x));
         float a2 = Mathf.Atan((v*v - Mathf.Sqrt(Mathf.Pow(v, 4) - g*(g*x*x + 2*y*v*v)))/(g*x));
-        return Mathf.Min(a1, a2);
+        return Mathf.Min(Mathf.Abs(a1), Mathf.Abs(a2));
     }
 }
