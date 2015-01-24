@@ -8,18 +8,18 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public List<string> items;
 
+    float dx;
     float spriteHeight;
     bool jumping;
     Animator animator;
     bool facing = true;
     Collider2D arm;
 
-
     void Start()
     {
         arm = transform.GetChild(0).collider2D;
         animator = GetComponent<Animator>();
-        spriteHeight = collider2D.bounds.size.y / transform.localScale.y;
+        spriteHeight = collider2D.bounds.size.y;
         Debug.Log(GameData.Instance); //forcing it to spawn to have a menu
     }
 
@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour
     {
         jumping = Input.GetButton("Jump");
 
-        float dx = Input.GetAxis("Horizontal");
+        dx = Input.GetAxis("Horizontal");
         facing = dx > 0 ? true : dx < 0 ? false : facing;
-        transform.Translate(new Vector3(dx * speed.x * Time.deltaTime, 0, 0));
+        
         Vector3 v = transform.localScale;
         v.x = facing ? Mathf.Abs(v.x) : -Mathf.Abs(v.x);
         transform.localScale = v;
@@ -49,7 +49,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (jumping && Physics2D.Raycast(transform.position, -Vector2.up, spriteHeight / 1.6f))
+        rigidbody2D.velocity = new Vector3(dx * speed.x, rigidbody2D.velocity.y, 0);
+        Debug.DrawLine(collider2D.bounds.center,collider2D.bounds.center - Vector3.up * spriteHeight / 1.9f);
+        if (jumping && Physics2D.Raycast(collider2D.bounds.center, -Vector2.up, spriteHeight / 1.9f))
             rigidbody2D.AddForce(new Vector2(0, speed.y), ForceMode2D.Impulse);
     }
 
@@ -63,8 +65,8 @@ public class PlayerController : MonoBehaviour
     void Fire()
     {
         Quaternion angle = Quaternion.Euler(0, 0, facing ? 30 : 150);
-        Vector3 n = Vector3.right;
-        GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position + (facing ? n : -n) / 6, angle);
+        GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position, angle);
+        Physics2D.IgnoreCollision(projectile.collider2D, collider2D);
         projectile.GetComponent<Arrow>().SetTargetTag("Enemy");
         projectile.rigidbody2D.velocity = 5 * projectile.transform.right;
     }
