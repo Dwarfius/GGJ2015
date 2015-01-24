@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         arm = transform.GetChild(0).collider2D;
         animator = GetComponent<Animator>();
-        spriteHeight = collider2D.bounds.size.y / transform.localScale.y;
+        spriteHeight = collider2D.bounds.size.y;
         Debug.Log(GameData.Instance); //forcing it to spawn to have a menu
     }
 
@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (jumping && Physics2D.Raycast(transform.position, -Vector2.up, spriteHeight / 1.6f))
+        Debug.DrawLine(transform.position, transform.position - Vector3.up * spriteHeight / 1.9f);
+        if (jumping && Physics2D.Raycast(transform.position, -Vector2.up, spriteHeight / 1.9f))
             rigidbody2D.AddForce(new Vector2(0, speed.y), ForceMode2D.Impulse);
     }
 
@@ -64,8 +65,8 @@ public class PlayerController : MonoBehaviour
     void Fire()
     {
         Quaternion angle = Quaternion.Euler(0, 0, facing ? 30 : 150);
-        Vector3 n = Vector3.right;
-        GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position + (facing ? n : -n) / 6, angle);
+        GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position, angle);
+        Physics2D.IgnoreCollision(projectile.collider2D, collider2D);
         projectile.GetComponent<Arrow>().SetTargetTag("Enemy");
         projectile.rigidbody2D.velocity = 5 * projectile.transform.right;
     }

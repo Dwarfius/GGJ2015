@@ -14,10 +14,10 @@ public class EnemyArcher : MonoBehaviour
         if (target && shootCd < 0)
         {
             float v = 5;
-            Vector3 n = (target.position - transform.position).normalized / 6; //forcing the outside spawn
-            float A = GetFiringAngleSolution(transform.position + n, target.position, v);
+            float A = GetFiringAngleSolution(transform.position, target.position, v);
             Quaternion angle = Quaternion.Euler(0, 0, A * Mathf.Rad2Deg);
-            GameObject arrow = (GameObject)Instantiate(arrowPrefab, transform.position + n, angle);
+            GameObject arrow = (GameObject)Instantiate(arrowPrefab, transform.position, angle);
+            Physics2D.IgnoreCollision(arrow.collider2D, collider2D);
             arrow.GetComponent<Arrow>().SetTargetTag("Player");
             arrow.rigidbody2D.velocity = v * arrow.transform.right;
             shootCd = shootCooldown;
