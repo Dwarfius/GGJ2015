@@ -14,7 +14,12 @@ public class IntroText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        GameData d = GameData.Instance;
+        if (d.allAnswers[0] != 0)
+        {
+            GetComponent<FarmerText>().enabled = true;
+            enabled = false;
+        }
 	}
 	
 	// Update is called once per frame

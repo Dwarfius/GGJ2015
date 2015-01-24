@@ -18,4 +18,10 @@ public class GameData : MonoBehaviour {
     }
 
     public int[] allAnswers = new int[10];
+    public bool stolenPigs = false;
+    public bool dragonHouse = false;
+    public bool villagesBetrayed = false;
+    public bool dragonButt = false;
+    public bool portalOpened = false;
+    public bool nexusSomething = false;
 }
