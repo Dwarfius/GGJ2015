@@ -44,27 +44,7 @@ public class MainMenu : MonoBehaviour
         int width = Screen.width / 10, height = Screen.height / 12;
         int space = Screen.height / 20;
 
-        if(state == State.Main)
-        {
-            GUI.Box(new Rect(x - width / 2, y, width, height), "Main Menu");
-            y += height + space;
-
-            if (GUI.Button(new Rect(x - width / 2, y, width, height), "Play"))
-                Application.LoadLevel(1);
-            y += height + space;
-
-            if (GUI.Button(new Rect(x - width / 2, y, width, height), "Load"))
-                state = State.Load;
-            y += height + space;
-
-            if (GUI.Button(new Rect(x - width / 2, y, width, height), "Options"))
-                state = State.Options;
-            y += height + space;
-
-            if (GUI.Button(new Rect(x - width / 2, y, width, height), "Exit"))
-                Application.Quit();
-        }
-        else if(state == State.Load)
+if(state == State.Load)
         {
             GUI.Box(new Rect(x - width / 2, y, width, height), "Load");
             y += height + space;
@@ -90,5 +70,10 @@ public class MainMenu : MonoBehaviour
             if (GUI.Button(new Rect(x - width / 2, y, width, height), "Back"))
                 state = State.Main;
         }
+    }
+
+    void LoadLevel1()
+    {
+        Application.LoadLevel(1);
     }
 }

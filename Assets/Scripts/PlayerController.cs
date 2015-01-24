@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public Vector2 speed = Vector2.one;
     public GameObject projectilePrefab;
+    public string[] items;
 
     float spriteHeight;
     bool jumping;
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
         v.x = facing ? Mathf.Abs(v.x) : -Mathf.Abs(v.x);
         transform.localScale = v;
 
+        if (Input.GetButtonDown("Use"))
+            Use();
         if (Input.GetButtonDown("Attack"))
             Attack();
         if (Input.GetButtonDown("Fire"))
@@ -64,6 +67,25 @@ public class PlayerController : MonoBehaviour
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position + (facing ? n : -n) / 6, angle);
         projectile.GetComponent<Arrow>().SetTargetTag("Enemy");
         projectile.rigidbody2D.velocity = 5 * projectile.transform.right;
+    }
+
+    Interactible item = null;
+    void Use()
+    {
+        if (item)
+            item.Interact();
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Interactible")
+            item = col.gameObject.GetComponent<Interactible>();
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Interactible")
+            item = null;
     }
 
     //used to recieve triggers from the sword arm
