@@ -45,8 +45,9 @@ public class Question3 : MonoBehaviour {
             if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 200, 500, 20), "visit the village that requires assistance"))
             {
                 d.allAnswers[2] = 2; //assist the village
-                GetComponent<Question4>().enabled = true;
+                //GetComponent<Question4>().enabled = true;
                 enabled = false;
+                Application.LoadLevel("TestScene");
             }
             if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 300, 500, 20), "A note states that something strange happened in a valley, something came down from the sky with flames and it roared when it landed."))
             {

@@ -19,14 +19,14 @@ public class GameData : MonoBehaviour {
     }
 
     public int[] allAnswers = new int[10];
-<<<<<<< HEAD
+
     public bool stolenPigs = false;
     public bool dragonHouse = false;
     public bool villagesBetrayed = false;
     public bool dragonButt = false;
     public bool portalOpened = false;
     public bool nexusSomething = false;
-=======
+
     float timeStarted = 0; //used not to count time spent in main menu
     float gameTime = 0;
 
@@ -138,5 +138,5 @@ public class GameData : MonoBehaviour {
                 saves[i] = null;
         }
     }
->>>>>>> origin/master
+
 }
