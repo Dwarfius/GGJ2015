@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     float spriteHeight;
     bool jumping;
 
+    public Texture2D tutorial1;
+
     void Start()
     {
         spriteHeight = collider2D.bounds.size.y / transform.localScale.y;
@@ -28,5 +30,5 @@ public class PlayerController : MonoBehaviour
             rigidbody2D.AddForce(new Vector2(0, speed.y), ForceMode2D.Impulse);
     }
 
-    
+
 }
