@@ -9,7 +9,7 @@ public class GameData : MonoBehaviour {
         {
             if(instance == null)
             {
-                GameObject obj = new GameObject();
+                GameObject obj = new GameObject("Answers");
                 DontDestroyOnLoad(obj);
                 instance = obj.AddComponent<GameData>();
             }
