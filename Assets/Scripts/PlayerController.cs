@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public List<string> items;
 
     float spriteHeight;
+    float dx;
     bool jumping;
     Animator animator;
     bool facing = true;
@@ -28,9 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         jumping = Input.GetButton("Jump");
 
-        float dx = Input.GetAxis("Horizontal");
+        dx = Input.GetAxis("Horizontal");
         facing = dx > 0 ? true : dx < 0 ? false : facing;
-        transform.Translate(new Vector3(dx * speed.x * Time.deltaTime, 0, 0));
         Vector3 v = transform.localScale;
         v.x = facing ? Mathf.Abs(v.x) : -Mathf.Abs(v.x);
         transform.localScale = v;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.DrawLine(transform.position, transform.position - Vector3.up * spriteHeight / 1.9f);
+        rigidbody2D.velocity = new Vector3(dx * speed.x, rigidbody2D.velocity.y, 0);
         if (jumping && Physics2D.Raycast(transform.position, -Vector2.up, spriteHeight / 1.9f))
             rigidbody2D.AddForce(new Vector2(0, speed.y), ForceMode2D.Impulse);
     }

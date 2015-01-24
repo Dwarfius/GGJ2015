@@ -13,6 +13,8 @@ public class EnemyArcher : MonoBehaviour
     {
         if (target && shootCd < 0)
         {
+            float mag = (target.position - transform.position).magnitude;
+            Debug.Log(mag);
             bool facing = (target.position - transform.position).normalized.x > 0;
             float v = 10;
             float A = GetFiringAngleSolution(transform.position, target.position, v) * Mathf.Rad2Deg;
