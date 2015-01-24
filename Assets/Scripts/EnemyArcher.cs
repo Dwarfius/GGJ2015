@@ -14,9 +14,8 @@ public class EnemyArcher : MonoBehaviour
         if (target && shootCd < 0)
         {
             float mag = (target.position - transform.position).magnitude;
-            Debug.Log(mag);
             bool facing = (target.position - transform.position).normalized.x > 0;
-            float v = 10;
+            float v = mag * 1.5f;
             float A = GetFiringAngleSolution(transform.position, target.position, v) * Mathf.Rad2Deg;
             Quaternion angle = Quaternion.Euler(0, 0, facing ? A : 180 - A);
             GameObject arrow = (GameObject)Instantiate(arrowPrefab, transform.position, angle);

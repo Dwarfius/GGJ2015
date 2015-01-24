@@ -12,6 +12,11 @@ public class Arrow : MonoBehaviour
         Destroy(gameObject, 60);
 	}
 
+    void Update()
+    {
+        transform.right = Vector3.Slerp(transform.right, rigidbody2D.velocity.normalized, Time.deltaTime * 3);
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == targetTag)
