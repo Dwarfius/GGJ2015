@@ -26,10 +26,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         jumping = Input.GetButton("Jump");
+        animator.SetBool("jump", jumping);
+        animator.SetBool("falling", rigidbody2D.velocity.y < 0);
 
         dx = Input.GetAxis("Horizontal");
         facing = dx > 0 ? true : dx < 0 ? false : facing;
-        
+        animator.SetBool("run", dx != 0);
+
         Vector3 v = transform.localScale;
         v.x = facing ? Mathf.Abs(v.x) : -Mathf.Abs(v.x);
         transform.localScale = v;
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        animator.SetBool("attacking", true);
+        animator.SetBool("attack", true);
         arm.enabled = true;
         StartCoroutine(armCd());
     }
@@ -99,8 +102,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator armCd()
     {
-        yield return new WaitForSeconds(1.083f);
+        yield return new WaitForSeconds(0.467f);
         arm.enabled = false;
-        animator.SetBool("attacking", false);
+        animator.SetBool("attack", false);
     }
 }
