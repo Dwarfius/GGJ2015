@@ -66,7 +66,7 @@ public class MainMenu : MonoBehaviour
         }
         else if(state == State.Load)
         {
-            GUI.Box(new Rect(x - width / 2, y, width, height), "Main Menu");
+            GUI.Box(new Rect(x - width / 2, y, width, height), "Load");
             y += height + space;
             
             for(int i=0; i<5; i++)
