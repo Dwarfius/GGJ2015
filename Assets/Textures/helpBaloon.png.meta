@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: c4af0976f7198bb45a198540743fdcbb
+guid: f0a935f2492402a40bfe6ab7069f3ac7
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: bandit_0
-    21300002: bandit_1
-    21300004: bandit_2
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -28,13 +25,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -45,36 +42,6 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: bandit_0
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 166
-        width: 370
-        height: 487
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: bandit_1
-      rect:
-        serializedVersion: 2
-        x: 660
-        y: 189
-        width: 549
-        height: 335
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: bandit_2
-      rect:
-        serializedVersion: 2
-        x: 649
-        y: 615
-        width: 507
-        height: 511
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
