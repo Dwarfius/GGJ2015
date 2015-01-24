@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class IntroText : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class IntroText : MonoBehaviour {
     public int wordsPerSecond = 50; // speed of typewriter
     private float timeElapsed = 0;
     public int characterCount;
+
+    public Text text;
 
 
 	// Use this for initialization
@@ -28,12 +31,13 @@ public class IntroText : MonoBehaviour {
         characterCount = Convert.ToInt32(timeElapsed);
         if (characterCount <= fullText.Length)
             textShownOnScreen = fullText.Substring(0, characterCount);
+        text.text = textShownOnScreen;
 	}
 
 
     void OnGUI()
     {
-        GUI.Label(new Rect(100, 30, Screen.width - 200, Screen.height / 2), textShownOnScreen);
+        
         if (characterCount >= fullText.Length) 
         {
             GameData d = GameData.Instance;
