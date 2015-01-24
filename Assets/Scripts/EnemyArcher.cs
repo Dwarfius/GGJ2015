@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyArcher : MonoBehaviour 
 {
     public float shootCooldown = 3;
-    public GameObject arrow;
+    public GameObject arrowPrefab;
 
     Transform target;
     float shootCd;
@@ -17,8 +17,9 @@ public class EnemyArcher : MonoBehaviour
             Vector3 n = (target.position - transform.position).normalized / 6; //forcing the outside spawn
             float A = GetFiringAngleSolution(transform.position + n, target.position, v);
             Quaternion angle = Quaternion.Euler(0, 0, A * Mathf.Rad2Deg);
-            GameObject arrowInstance = (GameObject)Instantiate(arrow, transform.position + n, angle);
-            arrowInstance.rigidbody2D.velocity = v * arrowInstance.transform.right;
+            GameObject arrow = (GameObject)Instantiate(arrowPrefab, transform.position + n, angle);
+            arrow.GetComponent<Arrow>().SetTargetTag("Player");
+            arrow.rigidbody2D.velocity = v * arrow.transform.right;
             shootCd = shootCooldown;
         }
         else
