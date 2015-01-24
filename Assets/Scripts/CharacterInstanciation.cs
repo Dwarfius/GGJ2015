@@ -3,26 +3,26 @@ using System.Collections;
 
 public class CharacterInstanciation : MonoBehaviour {
 
-    public Sprite farmer;
-    public Sprite knight;
-    public Sprite wizard;
+    public GameObject farmer;
+    public GameObject knight;
+    public GameObject wizard;
 
     private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
         GameData d = GameData.Instance;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
         switch (d.allAnswers[0])
         {
             case 1:
-                spriteRenderer.sprite = farmer;
+                Instantiate(farmer);
                 break;
             case 2:
-                spriteRenderer.sprite = knight;
+                Instantiate(knight);
                 break;
             case 3:
-                spriteRenderer.sprite = wizard;
+                Instantiate(wizard);
                 break;
         }
 	}

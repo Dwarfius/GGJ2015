@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
     Interactible item = null;
     void Use()
     {
+        Debug.Log(item);
         if (item)
             item.Interact(this);
     }
