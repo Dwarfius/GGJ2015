@@ -17,7 +17,7 @@ public class EnemyKnight : MonoBehaviour
     {
 	    //before moving, check availability
         float dX = Time.deltaTime * speed;
-        if (Physics2D.Raycast(transform.position, transform.right * facing, dX))
+        if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 10))
             facing *= -1;
         else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f))
             facing *= -1;
