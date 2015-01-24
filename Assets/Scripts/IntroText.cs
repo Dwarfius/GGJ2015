@@ -15,6 +15,7 @@ public class IntroText : MonoBehaviour {
     public Text text;
 
 
+
 	// Use this for initialization
 	void Start () {
         GameData d = GameData.Instance;
@@ -34,33 +35,10 @@ public class IntroText : MonoBehaviour {
         text.text = textShownOnScreen;
 	}
 
-
-    void OnGUI()
+    public void Answered(int n)
     {
-        
-        if (characterCount >= fullText.Length) 
-        {
-            GameData d = GameData.Instance;
-            GUI.Label(new Rect(Screen.width/2, Screen.height / 2, 500, 100), "Who are you?");
-            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 100, 500, 20), "Farmer"))
-            {
-                d.allAnswers[0] = 1; //Farmer
-                GetComponent<FarmerText>().enabled = true;
-                enabled = false;
-            }
-            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 200, 500, 20), "Knight"))
-            {
-                d.allAnswers[0] = 2; //Knight
-                GetComponent<FarmerText>().enabled = true;
-                enabled = false;
-            }
-            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 300, 500, 20), "Wizard"))
-            {
-                d.allAnswers[0] = 3; //Wizard
-                GetComponent<FarmerText>().enabled = true;
-                enabled = false;
-            }
-        }
-
+        GameData.Instance.allAnswers[0] = n;
+        GetComponent<FarmerText>().enabled = true;
+        enabled = false;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI; 
 
 public class FarmerText : MonoBehaviour {
    
@@ -10,6 +11,8 @@ public class FarmerText : MonoBehaviour {
     private float timeElapsed = 0;
     public int characterCount;
     public int caseSwitch;
+
+    public Text text;
 
     
 	// Use this for initialization
@@ -28,6 +31,7 @@ public class FarmerText : MonoBehaviour {
         characterCount = Convert.ToInt32(timeElapsed);
         if (characterCount <= fullText.Length)
             textShownOnScreen = fullText.Substring(0, characterCount);
+            text.text = textShownOnScreen;
 	}
 
     void OnGUI()
@@ -110,5 +114,13 @@ public class FarmerText : MonoBehaviour {
                 break;
         }
     }
-        
+
+
+    public void Answered(int n)
+    {
+        GameData.Instance.allAnswers[0] = n;
+        GetComponent<FarmerText>().enabled = true;
+        enabled = false;
+    }
 }
+        
