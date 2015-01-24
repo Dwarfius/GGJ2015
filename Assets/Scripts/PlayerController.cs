@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour 
 {
     public Vector2 speed = Vector2.one;
     public GameObject projectilePrefab;
+    public List<string> items;
 
     float spriteHeight;
     bool jumping;
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
         v.x = facing ? Mathf.Abs(v.x) : -Mathf.Abs(v.x);
         transform.localScale = v;
 
+        if (Input.GetButtonDown("Use"))
+            Use();
         if (Input.GetButtonDown("Attack"))
             Attack();
         if (Input.GetButtonDown("Fire"))
@@ -66,11 +70,26 @@ public class PlayerController : MonoBehaviour
         projectile.rigidbody2D.velocity = 5 * projectile.transform.right;
     }
 
-    //used to recieve triggers from the sword arm
+    Interactible item = null;
+    void Use()
+    {
+        if (item)
+            item.Interact(this);
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Enemy")
             Destroy(col.gameObject);
+
+        if (col.tag == "Interactible")
+            item = col.GetComponent<Interactible>();
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Interactible")
+            item = null;
     }
 
     IEnumerator armCd()
