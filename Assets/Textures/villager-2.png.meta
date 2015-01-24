@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: ea25cfbda1e0d784bab063640e67873f
+guid: 2b038ba8fa618e745ac9d74002caa1d5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: archer_0
-    21300002: archer_1
-    21300004: archer_2
+    21300000: villager-2_0
+    21300002: villager-2_1
+    21300004: villager-2_2
+    21300006: villager-2_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,33 +47,43 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: archer_0
+    - name: villager-2_0
       rect:
         serializedVersion: 2
-        x: 771
-        y: 90
-        width: 693
-        height: 864
+        x: 0
+        y: 242
+        width: 222
+        height: 255
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: archer_1
+    - name: villager-2_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 44
-        width: 560
-        height: 708
+        x: 550
+        y: 310
+        width: 232
+        height: 218
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: archer_2
+    - name: villager-2_2
       rect:
         serializedVersion: 2
-        x: 112
-        y: 771
-        width: 491
-        height: 408
+        x: 889
+        y: 0
+        width: 583
+        height: 680
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: villager-2_3
+      rect:
+        serializedVersion: 2
+        x: 763
+        y: 764
+        width: 595
+        height: 415
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

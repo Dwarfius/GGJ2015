@@ -16,13 +16,13 @@ public class CharacterInstanciation : MonoBehaviour {
         switch (d.allAnswers[0])
         {
             case 1:
-                Instantiate(farmer);
+                Instantiate(farmer, transform.position, Quaternion.identity);
                 break;
             case 2:
-                Instantiate(knight);
+                Instantiate(knight, transform.position, Quaternion.identity);
                 break;
             case 3:
-                Instantiate(wizard);
+                Instantiate(wizard, transform.position, Quaternion.identity);
                 break;
         }
 	}

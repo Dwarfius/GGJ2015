@@ -47,7 +47,7 @@ public class Question3 : MonoBehaviour {
                 d.allAnswers[2] = 2; //assist the village
                 //GetComponent<Question4>().enabled = true;
                 enabled = false;
-                Application.LoadLevel("TestScene");
+                Application.LoadLevel("Level 1");
             }
             if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 300, 500, 20), "A note states that something strange happened in a valley, something came down from the sky with flames and it roared when it landed."))
             {
