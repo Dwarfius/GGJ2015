@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rigidbody2D.velocity = new Vector3(dx * speed.x, rigidbody2D.velocity.y, 0);
-        Vector3 leftSide = collider2D.bounds.center - new Vector3(collider2D.bounds.size.x / 2, 0, 0);
-        Vector3 rightSide = collider2D.bounds.center + new Vector3(collider2D.bounds.size.x / 2, 0, 0);
+        Vector3 leftSide = collider2D.bounds.center - new Vector3(collider2D.bounds.size.x / 2.1f, 0, 0);
+        Vector3 rightSide = collider2D.bounds.center + new Vector3(collider2D.bounds.size.x / 2.1f, 0, 0);
         Debug.DrawLine(leftSide, leftSide - Vector3.up * spriteHeight / 1.8f);
         Debug.DrawLine(rightSide, rightSide - Vector3.up * spriteHeight / 1.8f);
         if (jumping && (Physics2D.Raycast(leftSide, -Vector2.up, spriteHeight / 1.8f) ||

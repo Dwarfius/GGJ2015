@@ -4,29 +4,37 @@ using System.Collections;
 public class EnemyKnight : MonoBehaviour 
 {
     public float speed;
-    public LayerMask mask;
+    public LayerMask avoidMask;
+    public LayerMask attackMask;
 
     int facing = 1;
     float height;
+    Animator animator;
 
     void Start()
     {
         height = collider2D.bounds.size.y;
+        animator = GetComponent<Animator>();
     }
 
 	void Update () 
     {
+        
 	    //before moving, check availability
         float dX = Time.deltaTime * speed;
         Debug.DrawLine(transform.position, transform.position + transform.right * facing * dX * 30);
-        if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 30, mask))
+        if (!animator.GetBool("attack") && Physics2D.Raycast(transform.position, transform.right * facing, 3, attackMask)) //attempt an attack if can
+        {
+            StartCoroutine(AttackAnim());
+        }
+        if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 30, avoidMask))
         {
             facing *= -1;
             Vector3 v = transform.localScale;
             v.x *= -1;
             transform.localScale = v;
         }
-        else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f, mask))
+        else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f, avoidMask))
         {
             Debug.Log("tet");
             facing *= -1;
@@ -42,5 +50,12 @@ public class EnemyKnight : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
             Destroy(col.gameObject);
+    }
+
+    IEnumerator AttackAnim()
+    {
+        animator.SetBool("attack", true);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("attack", false);
     }
 }
