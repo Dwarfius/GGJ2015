@@ -4,7 +4,7 @@ using System.Collections;
 public class Arrow : MonoBehaviour 
 {
     public float lifeTime = 10;
-    public Audioclip arrow; 
+    public AudioClip arrow; 
 
     string targetTag;
 
@@ -21,7 +21,7 @@ public class Arrow : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == targetTag && col.gameObject.GetComponent<Donkey>()== false)
-            StartCoroutine(PlayArrowHit);
+            StartCoroutine(PlayArrowHit(col.gameObject));
         if(col.gameObject.tag == targetTag && col.gameObject.GetComponent<Donkey>()== true)
         {
             Donkey donk = col.gameObject.GetComponent<Donkey>();
@@ -33,7 +33,7 @@ public class Arrow : MonoBehaviour
             rigidbody2D.fixedAngle = true;
             rigidbody2D.isKinematic = true;
             collider2D.enabled = false;
-            StartCoroutine(PlayArrowMiss);
+            StartCoroutine(PlayArrowMiss());
         }
     }
 
@@ -42,19 +42,19 @@ public class Arrow : MonoBehaviour
         this.targetTag = targetTag;
     }
 
-    IEnumerator PlayArrowHit()
-        {
+    IEnumerator PlayArrowHit(GameObject g)
+    {
         audio.Play();
         yield return new WaitForSeconds(audio.clip.length);
-        Destroy(col.gameObject);
-        }
+        Destroy(g);
+    }
 
     IEnumerator PlayArrowMiss()
-        {
+    {
         audio.Play();
         yield return new WaitForSeconds(audio.clip.length);
         Destroy(gameObject, lifeTime);
-        }
+    }
 
        
 }

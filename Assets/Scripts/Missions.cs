@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Missions : MonoBehaviour {
-
 	// Use this for initialization
 	public void EndLevel () {
         GameData d = GameData.Instance;
@@ -19,10 +18,5 @@ public class Missions : MonoBehaviour {
                 enabled = false;
                 break;
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
 	}
 }

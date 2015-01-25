@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 speed = Vector2.one;
     public GameObject projectilePrefab;
     public List<string> items;
-    public Audioclip attack;
-    public Audioclip fire;
+    public AudioClip attack;
+    public AudioClip fire;
 
     float dx;
     float spriteHeight;
@@ -74,11 +74,12 @@ public class PlayerController : MonoBehaviour
     void Fire()
     {
         audio.Play();
-        Quaternion angle = Quaternion.Euler(0, 0, facing ? 30 : 150);
+        float a = 15;
+        Quaternion angle = Quaternion.Euler(0, 0, facing ? a : (180 - a));
         GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position, angle);
         Physics2D.IgnoreCollision(projectile.collider2D, collider2D);
         projectile.GetComponent<Arrow>().SetTargetTag("Enemy");
-        projectile.rigidbody2D.velocity = 10 * projectile.transform.right;
+        projectile.rigidbody2D.velocity = 20 * projectile.transform.right;
     }
 
     Interactible item = null;
