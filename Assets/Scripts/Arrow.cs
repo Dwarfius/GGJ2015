@@ -18,17 +18,21 @@ public class Arrow : MonoBehaviour
         transform.right = Vector3.Slerp(transform.right, rigidbody2D.velocity.normalized, Time.deltaTime * 3);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == targetTag && col.gameObject.GetComponent<Donkey>()== false)
-            StartCoroutine(PlayArrowHit(col.gameObject));
-        if(col.gameObject.tag == targetTag && col.gameObject.GetComponent<Donkey>()== true)
+        if (col.tag == targetTag && col.gameObject.GetComponent<Donkey>() == false)
+        {
+            if(col.gameObject.GetComponent<PlayerController>())
+                col.gameObject.GetComponent<PlayerController>().Die();
+            PlayArrowHit(col.gameObject);
+        }
+        if(col.tag == targetTag && col.gameObject.GetComponent<Donkey>()== true)
         {
             Donkey donk = col.gameObject.GetComponent<Donkey>();
             donk.healthPoints--;
             Destroy(this);
         }
-        else if (col.gameObject.tag == "Ground")
+        else if (col.tag == "Ground")
         {
             rigidbody2D.fixedAngle = true;
             rigidbody2D.isKinematic = true;
@@ -42,11 +46,11 @@ public class Arrow : MonoBehaviour
         this.targetTag = targetTag;
     }
 
-    IEnumerator PlayArrowHit(GameObject g)
+    void PlayArrowHit(GameObject g)
     {
         audio.Play();
-        yield return new WaitForSeconds(audio.clip.length);
         Destroy(g);
+        Destroy(gameObject);
     }
 
     IEnumerator PlayArrowMiss()
@@ -55,6 +59,4 @@ public class Arrow : MonoBehaviour
         yield return new WaitForSeconds(audio.clip.length);
         Destroy(gameObject, lifeTime);
     }
-
-       
 }

@@ -31,9 +31,12 @@ public class IntroText : MonoBehaviour {
     public void Answered(int n)
     {
         GameData.Instance.allAnswers[currentQ++] = n;
+        if(GameData.Instance.allAnswers[1] == 3)
+            Application.LoadLevel("GameOver");
         if (currentQ > 2)
             Application.LoadLevel("Level 1");
-        UpdateTexts();
+        else
+            UpdateTexts();
     }
 
     void UpdateTexts()

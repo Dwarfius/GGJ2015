@@ -2,7 +2,8 @@
 using System.Collections;
 using System.IO;
 
-public class GameData : MonoBehaviour {
+public class GameData : MonoBehaviour 
+{
     static GameData instance;
     public static GameData Instance
     {
@@ -19,13 +20,7 @@ public class GameData : MonoBehaviour {
     }
 
     public int[] allAnswers = new int[10];
-
-    public bool stolenPigs = false;
-    public bool dragonHouse = false;
-    public bool villagesBetrayed = false;
-    public bool dragonButt = false;
-    public bool portalOpened = false;
-    public bool nexusSomething = false;
+    public bool naturalCauseOfDeath;
 
     float timeStarted = 0; //used not to count time spent in main menu
     float gameTime = 0;

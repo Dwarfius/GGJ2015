@@ -5,6 +5,6 @@ public class HiddenDoor : Interactible {
 
     public override void Interact(PlayerController player)
     {
-        Application.LoadLevel("TestScene");
+        Application.LoadLevel("Intro");
     }
 }

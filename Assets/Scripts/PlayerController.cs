@@ -90,7 +90,8 @@ public class PlayerController : MonoBehaviour
             item.Interact(this);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    //used to recieve triggers from the sword arm
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy" && arm.enabled && col.gameObject.GetComponent<Donkey>() == false)
             Destroy(col.gameObject);
@@ -99,13 +100,6 @@ public class PlayerController : MonoBehaviour
             Donkey donk = col.gameObject.GetComponent<Donkey>();
             donk.healthPoints--;
         }
-
-    }
-
-    //used to recieve triggers from the sword arm
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        
 
         if (col.tag == "Interactible")
             item = col.gameObject.GetComponent<Interactible>();
@@ -123,5 +117,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.467f);
         arm.enabled = false;
         animator.SetBool("attack", false);
+    }
+
+    public void Die()
+    {
+        GameData.Instance.naturalCauseOfDeath = true;
+        Destroy(gameObject);
+        Application.LoadLevel("GameOver");
     }
 }

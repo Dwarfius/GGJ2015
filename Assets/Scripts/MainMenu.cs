@@ -74,7 +74,7 @@ if(state == State.Load)
 
     void LoadLevel1()
     {
-        Application.LoadLevel(1);
+        Application.LoadLevel("Tutorial");
     }
 
     void Exit()
