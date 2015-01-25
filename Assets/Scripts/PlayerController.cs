@@ -82,11 +82,16 @@ public class PlayerController : MonoBehaviour
             item.Interact(this);
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy" && arm.enabled)
+            Destroy(col.gameObject);
+    }
+
     //used to recieve triggers from the sword arm
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy" && arm.enabled)
-            Destroy(col.gameObject);
+        
 
         if (col.tag == "Interactible")
             item = col.gameObject.GetComponent<Interactible>();
