@@ -11,13 +11,14 @@ public class EnemyKnight : MonoBehaviour
 
     void Start()
     {
-        height = collider2D.bounds.size.y / transform.localScale.y;
+        height = collider2D.bounds.size.y;
     }
 
 	void Update () 
     {
 	    //before moving, check availability
         float dX = Time.deltaTime * speed;
+        Debug.DrawLine(transform.position, transform.position + transform.right * facing * dX * 30);
         if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 30, mask))
         {
             facing *= -1;
@@ -27,6 +28,7 @@ public class EnemyKnight : MonoBehaviour
         }
         else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f, mask))
         {
+            Debug.Log("tet");
             facing *= -1;
             Vector3 v = transform.localScale;
             v.x *= -1;
