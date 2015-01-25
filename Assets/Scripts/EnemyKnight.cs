@@ -20,12 +20,16 @@ public class EnemyKnight : MonoBehaviour
         if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 10))
         {
             facing *= -1;
-            transform.localScale.x *= -1;
+            Vector3 v = transform.localScale;
+            v.x *= -1;
+            transform.localScale = v;
         }
         else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f))
         {
             facing *= -1;
-            transform.localScale.x *= -1;
+            Vector3 v = transform.localScale;
+            v.x *= -1;
+            transform.localScale = v;
         }
 
         transform.Translate(transform.right * dX * facing);
