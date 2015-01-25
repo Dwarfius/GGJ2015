@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class TextureAnimationScript : MonoBehaviour 
 {	
@@ -13,17 +15,18 @@ public class TextureAnimationScript : MonoBehaviour
 	public int totalCells = 7;
 	public int fps = 4;
 
+    public UnityEvent OnFinish;
+
 	[HideInInspector] public bool open, close;
     [HideInInspector] public bool isOpen;
 
-	float timePassed = 0; 
+	float timePassed = 0;
+    Material mat;
 
     void Start()
     {
-        Vector3 pos = Camera.main.ViewportToWorldPoint(new Vector3(1, 0.51f, 1));
-        transform.position = pos;
-        renderer.material.SetTextureScale("_MainTex", Vector2.zero);
-        renderer.enabled = true;
+        mat = GetComponent<Image>().material;
+        mat.SetTextureScale("_MainTex", Vector2.zero);
     }
 
 	void Update () 
@@ -43,6 +46,8 @@ public class TextureAnimationScript : MonoBehaviour
 		{
             isOpen = !isOpen;
             open = close = false;
+            if (OnFinish != null)
+                OnFinish.Invoke();
 			return;
 		}
 
@@ -64,8 +69,8 @@ public class TextureAnimationScript : MonoBehaviour
 		float offsetY = (1.0f - size.y) - (vIndex + rowNumber) * size.y;
 		Vector2 offset = new Vector2(offsetX,offsetY);
 		
-		renderer.material.SetTextureOffset ("_MainTex", offset);
-		renderer.material.SetTextureScale  ("_MainTex", size);
+		mat.SetTextureOffset ("_MainTex", offset);
+		mat.SetTextureScale  ("_MainTex", size);
 	}
 
 	public void Reset()
