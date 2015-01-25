@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Donkey : MonoBehaviour {
+public class baloonRotate : MonoBehaviour {
 
-    public int healthPoints = 100;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,10 +10,8 @@ public class Donkey : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
 	
 	}
-    void OnGUI()
-    {
-
-    }
 }

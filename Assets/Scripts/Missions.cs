@@ -8,7 +8,8 @@ public class Missions : MonoBehaviour {
         switch(d.allAnswers[2])
         {
             case 1:
-                Application.LoadLevel("VillageFood");
+                GetComponent<VIllageFoodMission>().enabled = true;
+                enabled = false;
                 break;
             case 2:
                 Application.LoadLevel("VillageFood");
