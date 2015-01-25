@@ -19,8 +19,14 @@ public class Arrow : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == targetTag)
+        if (col.gameObject.tag == targetTag && col.gameObject.GetComponent<Donkey>()== false)
             Destroy(col.gameObject);
+        if(col.gameObject.tag == targetTag && col.gameObject.GetComponent<Donkey>()== true)
+        {
+            Donkey donk = col.gameObject.GetComponent<Donkey>();
+            donk.healthPoints--;
+            Destroy(this);
+        }
         else if (col.gameObject.tag == "Ground")
         {
             rigidbody2D.fixedAngle = true;

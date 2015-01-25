@@ -84,8 +84,14 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy" && arm.enabled)
+        if (col.gameObject.tag == "Enemy" && arm.enabled && col.gameObject.GetComponent<Donkey>() == false)
             Destroy(col.gameObject);
+        if (col.gameObject.tag == "Enemy" && arm.enabled && col.gameObject.GetComponent<Donkey>() == true)
+        {
+            Donkey donk = col.gameObject.GetComponent<Donkey>();
+            donk.healthPoints--;
+        }
+
     }
 
     //used to recieve triggers from the sword arm
