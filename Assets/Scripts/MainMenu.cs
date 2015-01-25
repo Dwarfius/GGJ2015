@@ -4,7 +4,7 @@ using System.IO;
 
 public class MainMenu : MonoBehaviour 
 {
-    enum State { Main, Options, Load }
+    public enum State { Main, Options, Load }
     State state = State.Main;
     string[] saves = new string[5]; 
 
@@ -75,5 +75,10 @@ if(state == State.Load)
     void LoadLevel1()
     {
         Application.LoadLevel(1);
+    }
+
+    void Exit()
+    {
+        Application.Quit();
     }
 }
