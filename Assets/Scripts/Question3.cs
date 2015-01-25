@@ -1,48 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
-public class Question3 : MonoBehaviour {
-
+public class Question3 : MonoBehaviour 
+{
     public string textShownOnScreen;
     public string fullText = "";
     public int wordsPerSecond = 50; // speed of typewriter
     private float timeElapsed = 0;
     public int characterCount;
-	// Use this for initialization
-	void Start () {
-        GameData d = GameData.Instance;
-        if (d.allAnswers[2] != 0)
-        {
-            GetComponent<Question4>().enabled = true;
-            enabled = false;
-        }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        timeElapsed += Time.deltaTime * wordsPerSecond;
-        characterCount = Convert.ToInt32(timeElapsed);
-        if (characterCount <= fullText.Length)
-            textShownOnScreen = fullText.Substring(0, characterCount);
-	}
-    void OnGUI()
+
+    public Text text;
+    public Text b1Text, b2Text, b3Text;
+
+    // Use this for initialization
+	void Start () 
     {
         GameData d = GameData.Instance;
-        if (d.allAnswers[1] == 3)
-        {
-            //Dead
-        }
-        else
-        {
+        if (d.allAnswers[2] != 0)
+            Application.LoadLevel("Level 1");
+
+        int a2 = d.allAnswers[1];
+        text.text = "You have a choice of helping the country - what do you choose to do?";
+        b1Text.text = "Transport food to the vilage";
+        b2Text.text = "Visit the village that requires assistance";
+        b3Text.text = "Investigate donkey reports";
+    }
+
+    #region Ric's past gui work
+    /*void OnGUI()
+    {
             GUI.Label(new Rect(100, 30, Screen.width - 200, Screen.height / 2), textShownOnScreen);
-            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 100, 500, 20), "Transport food to the monastery"))
+            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 100, 500, 20), ))
             {
                 d.allAnswers[2] = 1; //monastery
                 GetComponent<Question4>().enabled = true;
                 enabled = false;
             }
-            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 200, 500, 20), "visit the village that requires assistance"))
+            if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2 + 200, 500, 20), ))
             {
                 d.allAnswers[2] = 2; //assist the village
                 //GetComponent<Question4>().enabled = true;
@@ -109,6 +105,12 @@ public class Question3 : MonoBehaviour {
                     enabled = false;
                 }
             }
-        }
+    }*/
+    #endregion
+
+    void Answered(int i)
+    {
+        GameData.Instance.allAnswers[2] = i;
+        Application.LoadLevel("Level 1");
     }
 }

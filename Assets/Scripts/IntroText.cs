@@ -12,33 +12,63 @@ public class IntroText : MonoBehaviour {
     private float timeElapsed = 0;
     public int characterCount;
 
+    public Text mainText;
     public Text text;
+    public Text b1Text, b2Text, b3Text;
 
-
-
-	// Use this for initialization
-	void Start () {
-        GameData d = GameData.Instance;
-        if (d.allAnswers[0] != 0)
-        {
-            GetComponent<FarmerText>().enabled = true;
-            enabled = false;
-        }
-	}
+    int currentQ = 0;
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         timeElapsed += Time.deltaTime * wordsPerSecond;
         characterCount = Convert.ToInt32(timeElapsed);
         if (characterCount <= fullText.Length)
             textShownOnScreen = fullText.Substring(0, characterCount);
-        text.text = textShownOnScreen;
+        mainText.text = textShownOnScreen;
 	}
 
     public void Answered(int n)
     {
-        GameData.Instance.allAnswers[0] = n;
-        GetComponent<FarmerText>().enabled = true;
-        enabled = false;
+        GameData.Instance.allAnswers[currentQ++] = n;
+        if (currentQ > 2)
+            Application.LoadLevel("Level 1");
+        UpdateTexts();
+    }
+
+    void UpdateTexts()
+    {
+        int a = GameData.Instance.allAnswers[currentQ - 1];
+        if (currentQ == 1)
+        {
+            if (a == 1)
+            {
+                text.text = "What would a peasant want from the King?!";
+                b1Text.text = "Bandits stole me pigs Sire!";
+                b2Text.text = "A Dragon burned down my house!";
+                b3Text.text = "Just wanted to say hello… <3";
+            }
+            else if (a == 2)
+            {
+                text.text = "Sir, got anything to report?";
+                b1Text.text = "There are rumours that some villages in the surrounding area have sworn allegiance to our rival kingdom.";
+                b2Text.text = "A dragon just sniffed me but!";
+                b3Text.text = "I got balls of steel!";
+            }
+            else if (a == 3)
+            {
+                text.text = "You’re a long way from home sorcerer, tell me, what brings you to this kingdom?";
+                b1Text.text = "A portal has opened on this land, vile creatures have been swarming through the kingdom.";
+                b2Text.text = "The Nexus is opened once more, all Kings are called down for the ceremony.";
+                b3Text.text = "YOU SHALL NOT PASS!!!";
+            }
+        }
+        else if(currentQ == 2)
+        {
+            text.text = "You have a choice of helping the country - what do you choose to do?";
+            b1Text.text = "Transport food to the vilage";
+            b2Text.text = "Visit the village that requires assistance";
+            b3Text.text = "Investigate donkey reports";
+        }
     }
 }
