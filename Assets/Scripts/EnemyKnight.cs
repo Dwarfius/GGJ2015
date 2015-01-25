@@ -4,8 +4,9 @@ using System.Collections;
 public class EnemyKnight : MonoBehaviour 
 {
     public float speed;
+    public LayerMask mask;
 
-    int facing = -1;
+    int facing = 1;
     float height;
 
     void Start()
@@ -17,14 +18,14 @@ public class EnemyKnight : MonoBehaviour
     {
 	    //before moving, check availability
         float dX = Time.deltaTime * speed;
-        if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 10))
+        if (Physics2D.Raycast(transform.position, transform.right * facing, dX * 30, mask))
         {
             facing *= -1;
             Vector3 v = transform.localScale;
             v.x *= -1;
             transform.localScale = v;
         }
-        else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f))
+        else if (!Physics2D.Raycast(transform.position + transform.right * dX, -Vector2.up, height / 1.6f, mask))
         {
             facing *= -1;
             Vector3 v = transform.localScale;
