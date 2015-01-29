@@ -20,10 +20,10 @@ public class VIllageFoodMission : MonoBehaviour {
         switch (btnNum)
         {
             case 0:
-                Application.LoadLevel("Flying Donkeys");
+                Application.LoadLevel("VillageFood");
                 break;
             case 1:
-                Application.LoadLevel("VillageFood");
+                Application.LoadLevel("Castle");
                 break;
             case 2:
                 Application.LoadLevel("PARTY!");

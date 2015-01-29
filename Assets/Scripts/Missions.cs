@@ -5,6 +5,7 @@ public class Missions : MonoBehaviour {
 	// Use this for initialization
 	public void EndLevel () {
         GameData d = GameData.Instance;
+        Debug.Log(d.allAnswers[2]);
         switch(d.allAnswers[2])
         {
             case 1:
@@ -12,7 +13,7 @@ public class Missions : MonoBehaviour {
                 enabled = false;
                 break;
             case 2:
-                Application.LoadLevel("VillageFood");
+                Application.LoadLevel("GameOver");
                 break;
             case 3:
                 GetComponent<DonkeyAnomaly>().enabled = true;

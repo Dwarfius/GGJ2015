@@ -21,7 +21,8 @@ public class EnemyKnight : MonoBehaviour
 
 	void Update () 
     {
-        arm.enabled = animator.GetBool("attack");
+        if(!GetComponent<Donkey>())
+            arm.enabled = animator.GetBool("attack");
         //before moving, check availability
         float dX = Time.deltaTime * speed;
         Debug.DrawLine(transform.position, transform.position + transform.right * facing * dX * 30);
